@@ -11,7 +11,7 @@ use Boparaiamrit\ZohoSubscription\API\Subscription;
 use Illuminate\Config\Repository;
 use Illuminate\Support\ServiceProvider;
 
-class ZohoSubscriptionServiceProvider extends ServiceProvider
+class ZohoSubscriptionProvider extends ServiceProvider
 {
     /**
      * Indicates if loading of the provider is deferred.
@@ -47,31 +47,31 @@ class ZohoSubscriptionServiceProvider extends ServiceProvider
         $organisationID = $config->get('zoho_subscription.organisation_id');
 
         $this->app->singleton('zoho_subscription', function ($app) use ($token, $organisationID) {
-            return new Subscription($token, $organisationID, $app['config']);
+            return new Subscription($token, $organisationID, $app['cache.store']);
         });
 
         $this->app->singleton('zoho_subscription.subscription', function ($app) use ($token, $organisationID) {
-            return new Subscription($token, $organisationID, $app['config']);
+            return new Subscription($token, $organisationID, $app['cache.store']);
         });
 
         $this->app->singleton('zoho_subscription.customer', function ($app) use ($token, $organisationID) {
-            return new Customer($token, $organisationID, $app['config']);
+            return new Customer($token, $organisationID, $app['cache.store']);
         });
 
         $this->app->singleton('zoho_subscription.invoice', function ($app) use ($token, $organisationID) {
-            return new Invoice($token, $organisationID, $app['config']);
+            return new Invoice($token, $organisationID, $app['cache.store']);
         });
 
         $this->app->singleton('zoho_subscription.plan', function ($app) use ($token, $organisationID) {
-            return new Plan($token, $organisationID, $app['config']);
+            return new Plan($token, $organisationID, $app['cache.store']);
         });
 
         $this->app->singleton('zoho_subscription.addon', function ($app) use ($token, $organisationID) {
-            return new Addon($token, $organisationID, $app['config']);
+            return new Addon($token, $organisationID, $app['cache.store']);
         });
 
         $this->app->singleton('zoho_subscription.hosted_page', function ($app) use ($token, $organisationID) {
-            return new HostedPage($token, $organisationID, $app['config']);
+            return new HostedPage($token, $organisationID, $app['cache.store']);
         });
     }
 

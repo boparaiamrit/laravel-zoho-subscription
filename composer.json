@@ -11,8 +11,8 @@
     "guzzle/guzzle": "3.9.*"
   },
   "autoload": {
-    "psr-0": {
-      "Boparaiamrit\\ZohoSubscription\\": "src/"
+    "psr-4": {
+      "Boparaiamrit\\ZohoSubscription\\": "src"
     }
   }
 }
