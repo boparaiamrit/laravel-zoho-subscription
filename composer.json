@@ -1,0 +1,18 @@
+{
+  "name": "boparaiamrit/laravel-zoho-subscription",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Amritpal Singh",
+      "email": "boparaiamrit@gmail.com"
+    }
+  ],
+  "require": {
+    "guzzle/guzzle": "3.9.*"
+  },
+  "autoload": {
+    "psr-0": {
+      "Boparaiamrit\\ZohoSubscription\\": "src/"
+    }
+  }
+}
