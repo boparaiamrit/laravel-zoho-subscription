@@ -2,8 +2,6 @@
 
 namespace Boparaiamrit\ZohoSubscription\API;
 
-use Boparaiamrit\ZohoSubscription\ZohoSubscriptionClient as Client;
-
 /**
  * Plan.
  *
@@ -12,7 +10,7 @@ use Boparaiamrit\ZohoSubscription\ZohoSubscriptionClient as Client;
  *
  * @link https://www.zoho.com/subscriptions/api/v1/#plans
  */
-class Plan extends Client
+class Plan extends Base
 {
     public static $addonTypes = [
         'recurring',
@@ -32,13 +30,13 @@ class Plan extends Client
     public function listPlans(array $filters = [], bool $withAddons = true, string $addonType = null): array
     {
         $cacheKey = 'plans';
-        $hit = $this->getFromCache($cacheKey);
+        $hit      = $this->getFromCache($cacheKey);
 
         if (false === $hit) {
             $response = $this->sendRequest('GET', 'plans');
 
             $plans = $response;
-            $hit = $plans['plans'];
+            $hit   = $plans['plans'];
 
             $this->saveToCache($cacheKey, $hit);
         }
@@ -64,7 +62,7 @@ class Plan extends Client
     public function getPlan(string $planCode): array
     {
         $cacheKey = sprintf('plan_%s', $planCode);
-        $hit = $this->getFromCache($cacheKey);
+        $hit      = $this->getFromCache($cacheKey);
 
         if (false === $hit) {
             $response = $this->sendRequest('GET', sprintf('plans/%s', $planCode));
@@ -83,7 +81,7 @@ class Plan extends Client
     /**
      * get reccurent addons for given plan.
      *
-     * @param array  $plans
+     * @param array       $plans
      * @param string|null $addonType
      *
      * @return array

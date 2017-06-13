@@ -2,9 +2,7 @@
 
 namespace Boparaiamrit\ZohoSubscription\API;
 
-use Boparaiamrit\ZohoSubscription\ZohoSubscriptionClient as Client;
-
-class HostedPage extends Client
+class HostedPage extends Base
 {
     public function getHostedPageById(string $hostedPageId): array
     {

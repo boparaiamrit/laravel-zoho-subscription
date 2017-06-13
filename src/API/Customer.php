@@ -2,15 +2,13 @@
 
 namespace Boparaiamrit\ZohoSubscription\API;
 
-use Boparaiamrit\ZohoSubscription\ZohoSubscriptionClient as Client;
-
 /**
  * @author Hang Pham <thi@yproximite.com>
  * @author Tristan Bessoussa <tristan.bessoussa@gmail.com>
  *
  * @link   https://www.zoho.com/subscriptions/api/v1/#customers
  */
-class Customer extends Client
+class Customer extends Base
 {
     /**
      * @param string $customerEmail
@@ -20,7 +18,7 @@ class Customer extends Client
     public function getListCustomersByEmail(string $customerEmail): array
     {
         $cacheKey = sprintf('zoho_customer_%s', md5($customerEmail));
-        $hit = $this->getFromCache($cacheKey);
+        $hit      = $this->getFromCache($cacheKey);
 
         if (false === $hit) {
             $response = $this->sendRequest('GET', sprintf('customers?email=%s', $customerEmail));
@@ -63,11 +61,11 @@ class Customer extends Client
     public function getCustomerById(string $customerId): array
     {
         $cacheKey = sprintf('zoho_customer_%s', $customerId);
-        $hit = $this->getFromCache($cacheKey);
+        $hit      = $this->getFromCache($cacheKey);
 
         if (false === $hit) {
             $response = $this->sendRequest('GET', sprintf('customers/%s', $customerId));
-            $result = $response;
+            $result   = $response;
 
             $customer = $result['customer'];
 

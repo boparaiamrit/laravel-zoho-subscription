@@ -2,8 +2,6 @@
 
 namespace Boparaiamrit\ZohoSubscription\API;
 
-use Boparaiamrit\ZohoSubscription\ZohoSubscriptionClient as Client;
-
 /**
  * Addon.
  *
@@ -12,7 +10,7 @@ use Boparaiamrit\ZohoSubscription\ZohoSubscriptionClient as Client;
  *
  * @link https://www.zoho.com/subscriptions/api/v1/#addons
  */
-class Addon extends Client
+class Addon extends Base
 {
     /**
      * @param array $filters associative array of filters
@@ -24,13 +22,13 @@ class Addon extends Client
     public function listAddons(array $filters = []): array
     {
         $cacheKey = 'addons';
-        $hit = $this->getFromCache($cacheKey);
+        $hit      = $this->getFromCache($cacheKey);
 
         if (false === $hit) {
             $response = $this->sendRequest('GET', $cacheKey);
 
             $addons = $response;
-            $hit = $addons['addons'];
+            $hit    = $addons['addons'];
 
             $this->saveToCache($cacheKey, $hit);
         }
@@ -56,12 +54,12 @@ class Addon extends Client
     public function getAddon(string $addonCode): array
     {
         $cacheKey = sprintf('addon_%s', $addonCode);
-        $hit = $this->getFromCache($cacheKey);
+        $hit      = $this->getFromCache($cacheKey);
 
         if (false === $hit) {
             $response = $this->sendRequest('GET', sprintf('addons/%s', $addonCode));
 
-            $data = $response;
+            $data  = $response;
             $addon = $data['addon'];
 
             $this->saveToCache($cacheKey, $addon);

@@ -2,8 +2,6 @@
 
 namespace Boparaiamrit\ZohoSubscription\API;
 
-use Boparaiamrit\ZohoSubscription\ZohoSubscriptionClient as Client;
-
 /**
  * Subscription.
  *
@@ -11,7 +9,7 @@ use Boparaiamrit\ZohoSubscription\ZohoSubscriptionClient as Client;
  *
  * @link https://www.zoho.com/subscriptions/api/v1/#subscriptions
  */
-class Subscription extends Client
+class Subscription extends Base
 {
     const STATUS_UNPAID = 'unpaid';
 
@@ -46,7 +44,7 @@ class Subscription extends Client
 
     /**
      * @param string $subscriptionId The subscription's id
-     * @param string $couponCode     The coupon's code
+     * @param string $couponCode The coupon's code
      *
      * @throws \Exception
      *
@@ -83,7 +81,7 @@ class Subscription extends Client
     public function getSubscription(string $subscriptionId)
     {
         $cacheKey = sprintf('zoho_subscription_%s', $subscriptionId);
-        $hit = $this->getFromCache($cacheKey);
+        $hit      = $this->getFromCache($cacheKey);
 
         if (false === $hit) {
             $response = $this->sendRequest('GET', sprintf('subscriptions/%s', $subscriptionId));
@@ -110,7 +108,7 @@ class Subscription extends Client
     public function listSubscriptionsByCustomer(string $customerId)
     {
         $cacheKey = sprintf('zoho_subscriptions_%s', $customerId);
-        $hit = $this->getFromCache($cacheKey);
+        $hit      = $this->getFromCache($cacheKey);
 
         if (false === $hit) {
             $response = $this->sendRequest('GET', sprintf('subscriptions?customer_id=%s', $customerId));
