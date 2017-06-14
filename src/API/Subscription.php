@@ -99,6 +99,32 @@ class Subscription extends Base
     }
 
     /**
+     * @throws \Exception
+     *
+     * @return array
+     */
+    public function getSubscriptions()
+    {
+        $cacheKey = sprintf('zoho_subscriptions');
+
+        $hit = $this->getFromCache($cacheKey);
+
+        if (false === $hit) {
+            $response = $this->sendRequest('GET', sprintf('subscriptions'));
+
+            $result = $response;
+
+            $subscription = $result['subscriptions'];
+
+            $this->saveToCache($cacheKey, $subscription);
+
+            return $subscription;
+        }
+
+        return $hit;
+    }
+
+    /**
      * @param string $customerId The customer's id
      *
      * @throws \Exception
