@@ -21,11 +21,11 @@ class ZohoSubscriptionClient
         'hostedPage'
     ];
 
-    public function __construct($token, $organizationId, $ttl = 7200)
+    public function __construct($token, $organizationId, $Cache, $ttl = 7200)
     {
         $this->token          = $token;
         $this->organizationId = $organizationId;
-        $this->Cache          = app('cache.store');
+        $this->Cache          = $Cache;
         $this->ttl            = $ttl;
         $this->Client         = new Client(['base_uri' => 'https://subscriptions.zoho.com/api/v1/', 'timeout' => 2.0]);
     }
