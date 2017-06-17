@@ -20,6 +20,11 @@ class ZohoSubscriptionClient
         'addon',
         'hostedPage'
     ];
+    protected $token;
+    protected $organizationId;
+    protected $Cache;
+    protected $ttl;
+    protected $Client;
 
     public function __construct($token, $organizationId, $Cache, $ttl = 7200)
     {

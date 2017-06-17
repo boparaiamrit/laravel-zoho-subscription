@@ -17,7 +17,7 @@ class Base
 
     protected $ttl;
 
-    public function __construct($token, $organizationId, Cache $Cache, $ttl = 7200)
+    public function __construct($token, $organizationId, Cache $Cache, $ttl = 15)
     {
         $this->token          = $token;
         $this->organizationId = $organizationId;
