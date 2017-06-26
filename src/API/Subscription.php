@@ -99,18 +99,19 @@ class Subscription extends Base
     }
 
     /**
-     * @throws \Exception
+     * @param int $page
+     * @param int $perPage
      *
      * @return array
      */
-    public function getSubscriptions()
+    public function getSubscriptions($page = 1, $perPage = 200)
     {
         $cacheKey = sprintf('zoho_subscriptions');
 
         $hit = $this->getFromCache($cacheKey);
 
         if (false === $hit) {
-            $response = $this->sendRequest('GET', sprintf('subscriptions'));
+            $response = $this->sendRequest('GET', sprintf('subscriptions?page=' . $page . '&per_page=' . $perPage));
 
             $result = $response;
 
