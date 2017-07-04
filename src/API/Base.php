@@ -23,7 +23,7 @@ class Base
         $this->organizationId = $organizationId;
         $this->ttl            = $ttl;
         $this->Cache          = $Cache;
-        $this->Client         = new Client(['base_uri' => 'https://subscriptions.zoho.com/api/v1/', 'timeout' => 2.0]);
+        $this->Client         = new Client(['base_uri' => 'https://subscriptions.zoho.com/api/v1/', 'timeout' => 60]);
     }
 
     public function getFromCache($key)
@@ -47,7 +47,7 @@ class Base
 
     protected function sendRequest($method, $uri, array $headers = [], $body = null)
     {
-        $response = $this->Client->request($method, $uri, ['headers' => $this->getRequestHeaders($headers), 'body' => $body]);
+        $response = $this->Client->request($method, $uri, ['headers' => $this->getRequestHeaders($headers), 'body' => $body, 'timeout' => 60]);
 
         $data = json_decode($response->getBody()->getContents(), true);
 
