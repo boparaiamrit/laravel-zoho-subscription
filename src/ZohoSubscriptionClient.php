@@ -32,7 +32,7 @@ class ZohoSubscriptionClient
         $this->organizationId = $organizationId;
         $this->Cache          = $Cache;
         $this->ttl            = $ttl;
-        $this->Client         = new Client(['base_uri' => 'https://subscriptions.zoho.com/api/v1/', 'timeout' => 2.0]);
+        $this->Client         = new Client(['base_uri' => 'https://subscriptions.zoho.com/api/v1/', 'timeout' => 10.0]);
     }
 
     public function subscription()
