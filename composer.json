@@ -1,14 +1,18 @@
 {
-  "name": "boparaiamrit/laravel-zoho-subscription",
+  "name": "elevati/laravel-zoho-subscription",
   "license": "MIT",
   "authors": [
     {
       "name": "Amritpal Singh",
       "email": "boparaiamrit@gmail.com"
+    },
+    {
+      "name": "Elevati Team",
+      "email": "info@elevati.com"
     }
   ],
   "require": {
-    "guzzle/guzzle": "3.9.*"
+    "guzzlehttp/guzzle": "6.*"
   },
   "autoload": {
     "psr-4": {
